@@ -1,0 +1,12 @@
+{
+    "tasks": [
+        {
+            "title": "Javascript Project 1",
+            "task description": "this is task 1 description with some raw data",
+            "due date": "01/04/2024",
+            "due time": "01:45 AM"
+        },
+        {}
+    ],
+    "categories": {}
+}
