@@ -4,9 +4,26 @@
             "title": "Javascript Project 1",
             "task description": "this is task 1 description with some raw data",
             "due date": "01/04/2024",
-            "due time": "01:45 AM"
+            "due time": "01:45 AM",
+            "category": "self-learning",
+            "status": "not-started"
         },
-        {}
+        {
+            "title": "Another Task",
+            "task description": "Description of another task",
+            "due date": "01/05/2024",
+            "due time": "02:30 PM",
+            "category": "home",
+            "status": "completed"
+        }
     ],
-    "categories": {}
+    "categories": {
+        "home" : "home",
+        "self-learning": "self-learning"
+    },
+    "status":{
+        "not-started": "not-started",
+        "in-progress": "in-progress",
+        "completed": "completed"
+    }
 }
