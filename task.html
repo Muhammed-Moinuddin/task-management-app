@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Task Creation Page</title>
+</head>
+<body>
+    <div class="form-divs">
+        <div class="task-form-div" id="task-form">
+            <h1 class="task-h1">Create a Task</h1>
+            <form action="" id="task-creation-form">
+                <label for="task-title">Title</label>
+                <input type="text" name="task-title" id="task-title" required>
+                <label for="task-description">Task Description</label> 
+                <textarea name="task-description" id="task-description" cols="30" rows="10"></textarea>
+                <div>
+                    <label for="category">Categories</label>
+                    <select name="category" id="category" required>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+                <div class="status-section">
+                    <span>Status</span> <br>
+                    <input type="radio" id="not-started" name="status" value="Not Started" required>
+                    <label for="not-started">Not Started</label>
+                    <input type="radio" id="in-progress" name="status" value="In Progress" required>
+                    <label for="in-progress">In-Progress</label>
+                    <input type="radio" id="completed" name="status" value="Completed" required>
+                    <label for="completed">Completed</label>
+                </div>
+                <label for="duedate">Due Date</label>
+                <input type="date" id="duedate" name="duedate" required>
+                <label for="deadlinetime">Deadline Time</label>
+                <input type="time" id="deadlinetime" name="deadlinetime" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

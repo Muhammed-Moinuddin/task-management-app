@@ -3,52 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
-    
     <title>Task Management App</title>
 </head>
 <body>
-    <div>
-        <div>
-            <button onclick="createTask()">Create Task</button>
-            <button>Create Categorie</button>
+    <div class="main">
+        <div class="button-div">
+            <div>
+                <button onclick="createTask()"><a href="./task.html">Create Task</a></button>
+                <button>Create Category</button>
+            </div>
         </div>
-        <div class="task-form-div" id="task-creation-form">
-            <form action="" class="task-form">
-                <label for="task-title">Title:</label> <br>
-                <input type="text" name="task-title" id="task-title"> <br>
+        <div class="task-cards">
+            <div id="single-task">
+                <div class="card card-1">
+                    <div class="card__icon"><i class="fa-solid fa-1"></i></div>
+                    <p class="card__exit"><i class="fas fa-times"></i></p>
+                    <h2 class="card__title">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+                    <p class="card__apply">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore distinctio impedit iusto ab veritatis eos ullam neque explicabo officia inventore suscipit voluptatum sed placeat odit corporis cum, pariatur nemo. Numquam.
+                    </p>
+                  </div>
+            </div>
                 
-                <label for="task-description">Task Description:</label> <br> 
-                <textarea name="task-description" id="task-description" cols="30" rows="10"></textarea> <br>
-                <div>
-                    <label for="categories">Categories</label> <br>
-                    <select name="cars" id="cars">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <br>
-                <div>
-                    <p>Status</p>
-                    <input type="radio" id="not-started" name="status" value="Not Started">
-                    <label for="not-started">Not Started</label>
-                    <input type="radio" id="in-progress" name="s    tatus" value="In Progress">
-                    <label for="in-progress">In-Progress</label>
-                    <input type="radio" id="completed" name="status" value="Completed">
-                    <label for="completed">Completed</label>
-                </div>
-                <br>
-                <label for="duedate">Due Date:</label> <br>
-                <input type="date" id="duedate" name="duedate"> <br>
-                <label for="deadlinetime">Deadline Time:</label> <br>
-                <input type="time" id="deadlinetime" name="deadlinetime"> <br>
-                <input type="submit" value="Submit">
-            </form>
         </div>
     </div>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>
