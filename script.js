@@ -1,23 +1,3 @@
-// let taskFormDisplay = 1;
-// let taskFormDiv = document.getElementById('task-form');
-
-// function createTask(){
-//     if (taskFormDisplay == 1){
-//         taskFormDiv.style.display = "block";
-//         taskFormDisplay = 0
-//     } else {
-//         taskFormDiv.style.display = "none";
-//         taskFormDisplay = 1
-//     }
-// }
-const storedFormTasks = JSON.parse(localStorage.getItem('data')) || [];
-storedFormTasks.forEach((element) => {
-    const div = document.createElement('div');
-    div.textContent = `${element.title} and ${element.dueDate}`;
-    document.getElementById('single-task').appendChild(div);
-});
-
-
 document.getElementById('task-creation-form').addEventListener('submit', 
     function(e){
         e.preventDefault();
@@ -25,7 +5,8 @@ document.getElementById('task-creation-form').addEventListener('submit',
         const taskTitle = document.getElementById('task-title').value;
         const taskDescription = document.getElementById('task-description').value;
         const taskCategory = document.getElementById('category').value;
-        const taskStatus = document.querySelector('input[name=status]:checked');
+        const taskStatusInput = document.querySelector('input[name=status]:checked');
+        const taskStatus = taskStatusInput.value;
         const taskDuedate = document.getElementById('duedate').value;
         const taskDeadlinetime = document.getElementById('deadlinetime').value;
 
