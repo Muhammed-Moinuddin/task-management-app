@@ -173,6 +173,18 @@ input[type=text], input[type=time], input[type=date], select, textarea {
   align-self: center;
 }
 
+.card__changes{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card__editing, .card__deleting{
+  padding: 0% 1%;
+  cursor: pointer;
+  color: #2a00a9;
+  font-weight: 600;
+}
+
 /* CARD BACKGROUNDS */
 
 .card-1 {

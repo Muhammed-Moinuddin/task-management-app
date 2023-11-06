@@ -11,14 +11,6 @@
 //     }
 // }
 
-// <div class="card card-1">
-//     <div class="card__icon"><i class="fa-solid fa-1"></i></div>
-//     <p class="card__timeline"><i class="fas fa-times"></i></p>
-//     <h2 class="card__title">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-//     <p class="card__apply">
-//         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore distinctio impedit iusto ab veritatis eos ullam neque explicabo officia inventore suscipit voluptatum sed placeat odit corporis cum, pariatur nemo. Numquam.
-//     </p>
-// </div>
 
 const storedFormTasks = JSON.parse(localStorage.getItem('data')) || [];
 storedFormTasks.forEach((element, index) => {
@@ -63,5 +55,37 @@ storedFormTasks.forEach((element, index) => {
     const cardChanges = document.createElement('div');
     cardChanges.className = "card__changes";
     cardDiv.appendChild(cardChanges);
+
+    const cardEditing = document.createElement('div');
+    cardEditing.className = "card__editing";
+    cardEditing.textContent = "Edit "
+    cardChanges.appendChild(cardEditing);
+
+    const editingI = document.createElement('i');
+    editingI.className="fa-solid fa-pen-to-square";
+    cardEditing.appendChild(editingI);
+
+    const cardDeleting = document.createElement('div');
+    cardDeleting.className = "card__deleting";
+    cardDeleting.textContent = "Delete "
+    cardChanges.appendChild(cardDeleting);
+    cardDeleting.addEventListener('click',() => {
+        deleteTask(index)
+    })
+
+    const deletingI = document.createElement('i');
+    deletingI.className="fa-solid fa-trash-can";
+    cardDeleting.appendChild(deletingI);
 });
 
+function deleteTask(itemToDelete){
+    const updatedData = JSON.parse(localStorage.getItem('data'));
+    if (confirm('Are you sure you want to delete it?')) {
+        updatedData.splice(itemToDelete,1)
+        localStorage.setItem('data', JSON.stringify(updatedData));
+        window.location.reload();
+        console.log('Thing was saved to local storage.');
+      } else {
+        console.log('Thing was not saved to local storage.');
+      }
+}
