@@ -60,6 +60,8 @@ storedFormTasks.forEach((element, index) => {
     cardEditing.className = "card__editing";
     cardEditing.textContent = "Edit "
     cardChanges.appendChild(cardEditing);
+    cardEditing.addEventListener('click', () => {editTask(index)}
+    )
 
     const editingI = document.createElement('i');
     editingI.className="fa-solid fa-pen-to-square";
@@ -88,4 +90,13 @@ function deleteTask(itemToDelete){
       } else {
         console.log('Thing was not saved to local storage.');
       }
+}
+
+function editTask(itemToEdit){
+  window.location.href ='./task.html';
+  const updatedData = JSON.parse(localStorage.getItem('data'));
+  document.getElementById('task-title').value = updatedData[itemToEdit].title;
+  console.log(updatedData[itemToEdit].title);
+ 
+
 }

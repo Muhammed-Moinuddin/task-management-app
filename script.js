@@ -35,6 +35,6 @@ function saveTaskFormData(data){
         storedFormData.push(data);
         localStorage.setItem('data', JSON.stringify(storedFormData));
         alert("Form Submitted");
-        window.location.href='/index.html';
+        document.getElementById('task-creation-form').reset();
     } 
 }
