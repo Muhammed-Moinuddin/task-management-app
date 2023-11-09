@@ -11,7 +11,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-input[type=text], input[type=time], input[type=date], select, textarea {
+#task-title, #task-description, #duedate, #deadlinetime, select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -147,8 +147,25 @@ input[type=text], input[type=time], input[type=date], select, textarea {
 
 .card__timeline {
   margin: 0;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
   font-weight: 600;
   color: #2a00a9;
+  white-space: pre-line;
+  width: 50%;
+}
+
+.card__dueDateInput, .card__deadlineInput {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font-weight: 600;
+  color: #2a00a9;
+  white-space: pre-line; 
 }
 
 .card__status {

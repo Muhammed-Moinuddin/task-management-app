@@ -11,8 +11,14 @@
 //     }
 // }
 
+// document.addEventListener('DOMContentLoaded', function() {
+//   editTask();
+// });
 
-const storedFormTasks = JSON.parse(localStorage.getItem('data')) || [];
+const updatedData = JSON.parse(localStorage.getItem('data'));
+const cardIndex = JSON.parse(localStorage.getItem('taskCardIndex'));
+
+const storedFormTasks = updatedData || [];
 storedFormTasks.forEach((element, index) => {
 
     const cardDiv = document.createElement('div');
@@ -23,10 +29,23 @@ storedFormTasks.forEach((element, index) => {
     cardInfo.className = "card__info";
     cardDiv.appendChild(cardInfo);
 
-    const deadlineP = document.createElement('p');
-    deadlineP.className="card__timeline";
-    deadlineP.textContent = `Due Date: ${element.dueDate} || Deadline Time: ${element.deadlineTime}`
-    cardInfo.appendChild(deadlineP);
+    const deadlineDiv = document.createElement('div');
+    deadlineDiv.className = "card__timeline";
+    cardInfo.appendChild(deadlineDiv);
+
+    const deadlineInput = document.createElement('input');
+    deadlineInput.className="card__deadlineInput";
+    deadlineInput.type = "time";
+    deadlineInput.readOnly = true;
+    deadlineInput.value = element.deadlineTime
+    deadlineDiv.appendChild(deadlineInput);
+
+    const dueDateInput = document.createElement('input');
+    dueDateInput.className="card__dueDateInput";
+    dueDateInput.type = "date";
+    dueDateInput.readOnly = true;
+    dueDateInput.value = element.dueDate;
+    deadlineDiv.appendChild(dueDateInput);
 
     const statusP = document.createElement('p');
     statusP.className="card__status";
@@ -60,7 +79,12 @@ storedFormTasks.forEach((element, index) => {
     cardEditing.className = "card__editing";
     cardEditing.textContent = "Edit "
     cardChanges.appendChild(cardEditing);
-    cardEditing.addEventListener('click', () => {editTask(index)}
+    cardEditing.addEventListener('click', () => {
+      const taskCardIndex = JSON.stringify(index);
+      localStorage.setItem('taskCardIndex', taskCardIndex);
+      editTask()
+      // window.location.href = '/task.html';
+      }  
     )
 
     const editingI = document.createElement('i');
@@ -81,7 +105,7 @@ storedFormTasks.forEach((element, index) => {
 });
 
 function deleteTask(itemToDelete){
-    const updatedData = JSON.parse(localStorage.getItem('data'));
+
     if (confirm('Are you sure you want to delete it?')) {
         updatedData.splice(itemToDelete,1)
         localStorage.setItem('data', JSON.stringify(updatedData));
@@ -92,11 +116,47 @@ function deleteTask(itemToDelete){
       }
 }
 
-function editTask(itemToEdit){
-  window.location.href ='./task.html';
-  const updatedData = JSON.parse(localStorage.getItem('data'));
-  document.getElementById('task-title').value = updatedData[itemToEdit].title;
-  console.log(updatedData[itemToEdit].title);
- 
 
+function editTask(){ 
+  const card = document.querySelector(`.card.card-1:nth-child(${cardIndex + 1})`); // Select the card by index
+
+  // Find the input fields within the specific card
+  const dueDateInput = card.querySelector('.card__dueDateInput');
+  const deadlineInput = card.querySelector('.card__deadlineInput');
+
+  // Make the input fields editable
+  dueDateInput.removeAttribute('readonly');
+  deadlineInput.removeAttribute('readonly');
+
+  // Optionally, you can add a class to style the editable fields
+  dueDateInput.classList.add('editable');
+  deadlineInput.classList.add('editable');
+
+  console.log(updatedData[cardIndex]);
+
+ document.querySelector(`.card__editing`).textContent = "Save ";
+ document.querySelector(`.card.card-1:nth-child(${cardIndex + 1}) .card__changes .card__editing`);
+
+  saveData()
 }
+
+function saveData() {
+  
+  console.log(updatedData[cardIndex].title)
+}
+// function editTask() {
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const taskCardIndex = urlParams.get('taskCardIndex');
+//   const cardIndex = JSON.parse(taskCardIndex);
+
+//   // Retrieve updatedData from local storage within this function
+//   const updatedData = JSON.parse(localStorage.getItem('data'));
+
+//   if (updatedData && cardIndex !== null) {
+//     // Use the cardIndex to access the specific data
+//     console.log(updatedData[cardIndex].title);
+//   }
+// }
+
+// // Call the editTask function when the new page loads
+// editTask();

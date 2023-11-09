@@ -38,3 +38,11 @@ function saveTaskFormData(data){
         document.getElementById('task-creation-form').reset();
     } 
 }
+
+// function editTask(){ 
+//     const key = JSON.parse(localStorage.getItem('taskCardKey'));
+//     const updatedData = JSON.parse(localStorage.getItem('data'));
+//     // document.getElementById('task-title').value = updatedData[key].title;
+//     // Use the key to access the specific data
+//     console.log(updatedData[key].title);
+//   }
