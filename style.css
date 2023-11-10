@@ -195,7 +195,7 @@
   justify-content: flex-end;
 }
 
-.card__editing, .card__deleting{
+.card__editing, .card__deleting, .card__saving{
   padding: 0% 1%;
   cursor: pointer;
   color: #2a00a9;

@@ -16,7 +16,7 @@
 // });
 
 const updatedData = JSON.parse(localStorage.getItem('data'));
-const cardIndex = JSON.parse(localStorage.getItem('taskCardIndex'));
+
 
 const storedFormTasks = updatedData || [];
 storedFormTasks.forEach((element, index) => {
@@ -79,13 +79,6 @@ storedFormTasks.forEach((element, index) => {
     cardEditing.className = "card__editing";
     cardEditing.textContent = "Edit "
     cardChanges.appendChild(cardEditing);
-    cardEditing.addEventListener('click', () => {
-      const taskCardIndex = JSON.stringify(index);
-      localStorage.setItem('taskCardIndex', taskCardIndex);
-      editTask(taskCardIndex)
-      // window.location.href = '/task.html';
-      }  
-    )
 
     const editingI = document.createElement('i');
     editingI.className="fa-solid fa-pen-to-square";
@@ -116,82 +109,53 @@ function deleteTask(itemToDelete){
       }
 }
 
+document.getElementById('task-cards').addEventListener('click', (event) => {
+  if (event.target.classList.contains('card__editing')) {
+    const cardDiv = event.target.closest('.card');
+    const taskCards = document.querySelectorAll('.card.card-1');
+    const taskCardIndex = [...taskCards].indexOf(cardDiv);
+    editTask(taskCardIndex);
+  }
+});
 
-function editTask(taskCardIndex){ 
-  const card = document.querySelector(`.card.card-1:nth-child(${taskCardIndex + 1})`);  // Select the card by index
-  console.log(card)
 
-
-  // const editingDiv = card.querySelector(`.card__changes div:nth-child(${cardIndex})`);
-
+function editTask(taskCardIndex) {
+  const card = document.querySelectorAll('.card.card-1')[taskCardIndex];
   if (card) {
-    const editingDiv = card.querySelector('.card__changes .card__editing');
-    
-    if (editingDiv) {
-      console.log(card);
-      if (editingDiv.classList.contains('card__editing')) {
-        editingDiv.classList.remove('card__editing');
-        editingDiv.classList.add('card__saving');
+    const editingDiv = card.querySelector('.card__editing');
+    if (editingDiv && editingDiv.classList.contains('card__editing')) {
+      editingDiv.classList.remove('card__editing');
+      editingDiv.classList.add('card__saving');
 
-        document.querySelector(`.card__saving`).textContent = "Save ";
+      editingDiv.textContent = "Save ";
 
-        const editingI = document.createElement('i');
-        editingI.className = "fa-solid fa-floppy-disk";
-        document.querySelector(`.card__saving`).appendChild(editingI);
+      const editingI = document.createElement('i');
+      editingI.className = "fa-solid fa-floppy-disk";
+      editingDiv.appendChild(editingI);
 
-        // Find the input fields within the specific card
-        const dueDateInput = card.querySelector('.card__dueDateInput');
-        const deadlineInput = card.querySelector('.card__deadlineInput');
+      const dueDateInput = card.querySelector('.card__dueDateInput');
+      const deadlineInput = card.querySelector('.card__deadlineInput');
 
-        // Make the input fields editable
-        dueDateInput.removeAttribute('readonly');
-        deadlineInput.removeAttribute('readonly');
+      dueDateInput.removeAttribute('readonly');
+      deadlineInput.removeAttribute('readonly');
 
-        // Optionally, you can add a class to style the editable fields
-        dueDateInput.classList.add('editable');
-        deadlineInput.classList.add('editable');
-      } else {
-        saveData();
-      }
+      dueDateInput.classList.add('editable');
+      deadlineInput.classList.add('editable');
+
+      saveData(card, dueDateInput, deadlineInput, taskCardIndex);
     }
   }
-
-
-
-  // if (editingDiv.classList.contains('card__editing')) {
-
-  //   editingDiv.classList.remove('card__editing');
-  //   editingDiv.classList.add('card__saving');
-  
-  //   document.querySelector(`.card__saving`).textContent = "Save ";
-  
-  //   const editingI = document.createElement('i');
-  //   editingI.className="fa-solid fa-floppy-disk";
-  
-  //   document.querySelector(`.card__saving`).appendChild(editingI);
-  
-  //   // Find the input fields within the specific card
-  //   const dueDateInput = card.querySelector('.card__dueDateInput');
-  //   const deadlineInput = card.querySelector('.card__deadlineInput');
-  
-  //   // Make the input fields editable
-  //   dueDateInput.removeAttribute('readonly');
-  //   deadlineInput.removeAttribute('readonly');
-  
-  //   // Optionally, you can add a class to style the editable fields
-  //   dueDateInput.classList.add('editable');
-  //   deadlineInput.classList.add('editable');
-  // } else {
-  //   saveData();
-  // }
-
 }
 
 
-function saveData() {
 
-  console.log("Save clicked")
+function saveData(card, dueDateInput, deadlineInput, taskCardIndex) {
+  card.querySelector('.card__saving').addEventListener('click', (event) => {
+    localStorage.setItem(updatedData[taskCardIndex].dueDate, event.target.value);
+  })
+  console.log(card, dueDateInput, deadlineInput, updatedData[taskCardIndex].dueDate)
 }
+
 // function editTask() {
 //   const urlParams = new URLSearchParams(window.location.search);
 //   const taskCardIndex = urlParams.get('taskCardIndex');
